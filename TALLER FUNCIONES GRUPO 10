@@ -1,0 +1,405 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyOrfwm56cWEehvjIa/pxAPM",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/julianacarvajal1019/lPROGRAMA/blob/main/TALLER%20FUNCIONES%20GRUPO%2010\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "# **Adicionando etiquetas nutricionales a los alimentos**\n",
+        "Objetivo de aprendizaje: En este caso, aprenderás qué son las funciones de Python, cómo crearlas y ejecutarlas.\n",
+        "\n",
+        "Tú y tus compañeros están llevando a cabo un proyecto de investigación para determinar la precisión de las afirmaciones de los fabricantes de alimentos sobre el contenido nutricional de sus productos. Ya has reunido los datos de unos 500 productos de tu supermercado local y ahora quieres etiquetar cada uno de ellos según su densidad calórica, su contenido en azúcares y grasas.\n",
+        "\n",
+        "Para ello, quieres utilizar los criterios de etiquetado que la FDA (Food and Drug Administration, la entidad estadounidense encargada de controlar la calidad de los alimentos) ha definido para el país:\n",
+        "\n",
+        "***Categoría Etiqueta Criterio***\n",
+        "\n",
+        "Calorías Sin calorías Menos de 5 calorías por porción Calorías Bajo en calorías Menos de 40 calorías por porción Grasa Sin grasa Menos de 0,5 gramos de grasa total por porción Grasa Bajo en grasa 3 gramos o menos de grasa total por porción Azúcar Sin azúcar Menos de 0,5 gramos de azúcar por porción Fuente: Asociación Americana de la Diabetes e Instituto de Medicina."
+      ],
+      "metadata": {
+        "id": "3f7a1lfnYrDl"
+      }
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "# **ÁRBOL DE CALORIAS**\n",
+        "Vamos a escribir código que implemente este árbol de decisión e imprima la etiqueta resultante. Utilizaremos este alimento de ejemplo para probar nuestro código"
+      ],
+      "metadata": {
+        "id": "nWaP0FVyZYI5"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "banano = {\n",
+        "    \"tamano_porcion\":28,\n",
+        "    \"calorias\":94.1,\n",
+        "    \"grasa\":300,\n",
+        "    \"sodio\":1.96,\n",
+        "    \"azucar\":16,\n",
+        "    \"fibra\":0.504\n",
+        "}\n",
+        "\n",
+        "if banano[\"calorias\"] < 5:\n",
+        "    etiqueta_calorias = \"SIN CALORÍAS\"\n",
+        "elif banano[\"calorias\"] < 40:\n",
+        "    etiqueta_calorias = \"BAJO EN CALORÍAS\"\n",
+        "else:\n",
+        "    etiqueta_calorias = None\n",
+        "\n",
+        "print(etiqueta_calorias)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "qtRow51QZrZG",
+        "outputId": "c0e9bc82-f9cf-49f1-d999-17964696cd01"
+      },
+      "execution_count": 5,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "None\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "# **EJERCICIO 1**\n"
+      ],
+      "metadata": {
+        "id": "r608nCaNZ4VF"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "tomate = {\n",
+        "    \"tamano_porción\":125,\n",
+        "    \"calorias\":22.5,\n",
+        "    \"grasa\":250,\n",
+        "    \"sodio\":6.25,\n",
+        "    \"azucar\":3.29,\n",
+        "    \"fibra\":1.5\n",
+        "}\n",
+        "if tomate[\"calorias\"] < 5:\n",
+        "    etiqueta_calorias = \"SIN CALORÍAS\"\n",
+        "elif tomate[\"calorias\"] < 40:\n",
+        "    etiqueta_calorias = \"BAJO EN CALORÍAS\"\n",
+        "else:\n",
+        "    etiqueta_calorias = None\n",
+        "\n",
+        "print(etiqueta_calorias)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "tIg0ZFNHaDKf",
+        "outputId": "f16c2e47-31a1-41e6-ae3c-c1f8dab2d267"
+      },
+      "execution_count": 3,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "BAJO EN CALORÍAS\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "# **EJERCICIO 2**"
+      ],
+      "metadata": {
+        "id": "x_IWr1XdaGDn"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def asignar_etiquetas_calorias(banano):\n",
+        "    if alimento[\"calorias\"] < 5:\n",
+        "        etiqueta_calorias = \"SIN CALORÍAS\"\n",
+        "    elif alimento[\"calorias\"] < 40:\n",
+        "        etiqueta_calorias = \"BAJO EN CALORÍAS\"\n",
+        "    else:\n",
+        "        etiqueta_calorias = None\n",
+        "print(etiqueta_calorias)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "vLzfNH6JaIuH",
+        "outputId": "bba2598a-3bd6-41de-a472-e5c873fbf1f7"
+      },
+      "execution_count": 4,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "BAJO EN CALORÍAS\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "# **EJERCICIO 3**"
+      ],
+      "metadata": {
+        "id": "2arIAatTcMAm"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def asignar_etiqueta_calorias(alimento):\n",
+        "    \"\"\"\n",
+        "    Asigna una etiqueta de calorías de acuerdo a las reglas de la FDA.\n",
+        "\n",
+        "    Argumentos:\n",
+        "    alimento: Un dicccionario Python que tiene al menos una llave \"calorías\".\n",
+        "\n",
+        "    Salida:\n",
+        "    Sin salidas. Esta funcion simplemente imprime la etiqueta.\n",
+        "    \"\"\"\n",
+        "    if alimento[\"calorias\"] < 5:\n",
+        "        etiqueta_calorias = \"SIN CALORÍAS\"\n",
+        "    elif alimento[\"calorias\"] < 40:\n",
+        "        etiqueta_calorias = \"BAJO EN CALORÍAS\"\n",
+        "    else:\n",
+        "        etiqueta_calorias = None\n",
+        "print(etiqueta_calorias)\n"
+      ],
+      "metadata": {
+        "id": "yIOyWX19by5d"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def help(asignar_etiqueta_calorias):\n",
+        "    \"\"\"\n",
+        "    Asigna una etiqueta de calorías de acuerdo a las reglas de la FDA.\n",
+        "\n",
+        "    Argumentos:\n",
+        "    alimento: Un dicccionario Python que tiene al menos una llave \"calorías\".\n",
+        "\n",
+        "    Salida:\n",
+        "    Sin salidas. Esta funcion simplemente imprime la etiqueta.\n",
+        "    \"\"\"\n",
+        "    if alimento[\"calorias\"] < 5:\n",
+        "        etiqueta_calorias = \"SIN CALORÍAS\"\n",
+        "    elif alimento[\"calorias\"] < 40:\n",
+        "        etiqueta_calorias = \"BAJO EN CALORÍAS\"\n",
+        "    else:\n",
+        "        etiqueta_calorias = None\n",
+        "print(etiqueta_calorias)"
+      ],
+      "metadata": {
+        "id": "Sl40TGLUcW_u"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def asignar_etiqueta_calorias(alimento):\n",
+        "    \"\"\"\n",
+        "    Asigna una etiqueta de calorías de acuerdo a las reglas de la FDA.\n",
+        "\n",
+        "    Argumentos:\n",
+        "    alimento: Un dicccionario Python que tiene al menos una llave \"calorías\".\n",
+        "\n",
+        "    Salida:\n",
+        "    Sin salidas. Esta funcion simplemente imprime la etiqueta.\n",
+        "    \"\"\"\n",
+        "    if alimento[\"calorias\"] < 5:\n",
+        "        etiqueta_calorias = \"SIN CALORÍAS\"\n",
+        "    elif alimento[\"calorias\"] < 40:\n",
+        "        etiqueta_calorias = \"BAJO EN CALORÍAS\"\n",
+        "    else:\n",
+        "        etiqueta_calorias = None\n",
+        "    return etiqueta_calorias"
+      ],
+      "metadata": {
+        "id": "CG6fd0dDcdHH"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "etiqueta_caloria_tomate = asignar_etiqueta_calorias(tomate)\n",
+        "etiqueta_caloria_banano = asignar_etiqueta_calorias(banano)\n",
+        "\n",
+        "print(\"La Etiqueta para tomate es\", etiqueta_caloria_tomate)\n",
+        "print(\"y la Etiqueta para banano es\", etiqueta_caloria_banano)"
+      ],
+      "metadata": {
+        "id": "W2BGyMKycjPh"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "# **EJERCICIO 4**"
+      ],
+      "metadata": {
+        "id": "siBTgW36csiL"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "tomate = {\n",
+        "    \"tamano_porcion\":125,\n",
+        "    \"calorias\":22.5,\n",
+        "    \"grasa\":250,\n",
+        "    \"sodio\":6.25,\n",
+        "    \"azucar\":3.29,\n",
+        "    \"fibra\":1.5\n",
+        "}\n",
+        "if tomate[\"grasa\"] < 500:\n",
+        "  etiqueta_grasa = \"SIN GRASA\"\n",
+        "elif tomate[\"grasa\"] < 300:\n",
+        "  etiqueta_grasa = \"BAJA EN GRASA\"\n",
+        "else:\n",
+        "  etiqueta_grasa = None\n",
+        "\n",
+        "print(etiqueta_grasa)\n"
+      ],
+      "metadata": {
+        "id": "GtnC8t2Xcvpw"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "# **EJERCICIO 5**"
+      ],
+      "metadata": {
+        "id": "lIo6FhnKcyPX"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "tomate = {\n",
+        "    \"tamano_porcion\":125,\n",
+        "    \"calorias\":22.5,\n",
+        "    \"grasa\":0.25,\n",
+        "    \"sodio\":6.25,\n",
+        "    \"azucar\":3.29,\n",
+        "    \"fibra\":1.5\n",
+        "}\n",
+        "if tomate[\"grasa\"] < 0.5:\n",
+        "  etiqueta_grasa = \"SIN GRASA\"\n",
+        "elif tomate[\"grasa\"] < 0.3:\n",
+        "  etiqueta_grasa = \"BAJA EN GRASA\"\n",
+        "else:\n",
+        "  etiqueta_grasa = None\n",
+        "\n",
+        "print(etiqueta_grasa)\n"
+      ],
+      "metadata": {
+        "id": "rrkaUiJTc00-"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "azucar = {\n",
+        "    \"tamano_porcion\":125,\n",
+        "    \"calorias\":22.5,\n",
+        "    \"grasa\":0.25,\n",
+        "    \"sodio\":6.25,\n",
+        "    \"azucar\":3.29,\n",
+        "    \"fibra\":1.5\n",
+        "}\n",
+        "\n",
+        "if azucar[\"azucar\"] < 5:\n",
+        "  etiqueta_azucar = \"SIN AZÚCAR\"\n",
+        "\n",
+        "elif azucar[\"azucar\"] >5:\n",
+        "  etiqueta_azucar = \" NONE\"\n",
+        "\n",
+        "\n",
+        "\n",
+        "print(etiqueta_azucar)\n"
+      ],
+      "metadata": {
+        "id": "0MV8ZO-oc-QP"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "# **EJERCICIO 6**\n",
+        "\n",
+        "> Piensa en una estrategia para convertir estas tres funciones en una sola, evitando repetir código innecesariamente. No escribas todavía ningún código, sólo escribe la estrategia que seguirías.\n",
+        "\n",
+        "\n",
+        "\n",
+        ">***DESARROLLO***\n",
+        "\n",
+        "*   Si cada funcion asigna una etiqueta basada en una propiedad del alimento se puede usar funciones anonimas (lambdas) que es util cuando se necesita una solución agrupada sin varias funciones separadas.\n",
+        "\n",
+        "\n"
+      ],
+      "metadata": {
+        "id": "0DRz54OBc3wB"
+      }
+    }
+  ]
+}
